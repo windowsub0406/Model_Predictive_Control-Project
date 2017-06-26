@@ -1,8 +1,8 @@
 # Motion Predictive Control Project
 
 <p align="center">
-    <img src="./image/mpc.png" width="640" alt="main_image" /><br>
-    <b>result image(watch the full video below)</b><br>
+    <img src="./image/mpc.png" width="480" alt="main_image" /><br>
+    <b>result image(watch the video below)</b><br>
 </p>
 
 ## Introduction
