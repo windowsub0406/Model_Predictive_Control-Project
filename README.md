@@ -17,7 +17,7 @@ The basic idea of MPC is to predict the states of the car by considering the equ
 
 The model of the MPC is a basic **kinematic model**. Not dynamic model. For more details, refer to [this paper](http://www.me.berkeley.edu/~frborrel/pdfpub/IV_KinematicMPC_jason.pdf).  
 The state of the vehicle consists of `x-position`, `y-position`, `psi` (orientation(heading direction)), `v` (velocity), `CTE` (cross-track-eror), `epsi` (orientation error)   
-Actuator consists of steering angle and acceleration.(positive = throttle, negative = brake)
+Actuator consists of `steering angle` and `acceleration`.(positive = throttle, negative = brake)
 In simulator, MPC predicted trajectory is represented in green, and reference to the vehicle's coordinate is represented in yellow.
 
 ### Environment  
