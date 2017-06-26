@@ -1,13 +1,13 @@
 # Motion Predictive Control Project
 
 <p align="center">
-    <img src="./image/mpc.PNG" width="640" alt="main_image" /><br>
+    <img src="./image/mpc.png" width="640" alt="main_image" /><br>
     <b>result image(watch the full video below)</b><br>
 </p>
 
 ## Introduction
 
->This is Udacity's Self-Driving Car Nanodegree Term2 MPC Project.
+This is Udacity's Self-Driving Car Nanodegree Term2 MPC Project.
 In this project you'll implement Model Predictive Control (MPC) to drive the car around the track.  
 The basic idea of MPC is to predict the states of the car by considering the equations of motions of the car and minimizing a cost.  
 
@@ -15,8 +15,8 @@ The basic idea of MPC is to predict the states of the car by considering the equ
 
 ## Model
 
-The model of the MPC is a basic **kinematic model**. Not dynamic model. For more details, refer to [this paper](http://www.me.berkeley.edu/~frborrel/pdfpub/IV_KinematicMPC_jason.pdf)
-The state of the vehicle consists of `x-position`, `y-position`, `psi` (orientation(heading direction)), `v` (velocity), `CTE` (cross-track-eror), `epsi` (orientation error) and  
+The model of the MPC is a basic **kinematic model**. Not dynamic model. For more details, refer to [this paper](http://www.me.berkeley.edu/~frborrel/pdfpub/IV_KinematicMPC_jason.pdf).  
+The state of the vehicle consists of `x-position`, `y-position`, `psi` (orientation(heading direction)), `v` (velocity), `CTE` (cross-track-eror), `epsi` (orientation error)   
 Actuator consists of steering angle and acceleration.(positive = throttle, negative = brake)
 In simulator, MPC predicted trajectory is represented in green, and reference to the vehicle's coordinate is represented in yellow.
 
@@ -76,4 +76,4 @@ In simulator, MPC predicted trajectory is represented in green, and reference to
   
 > Click for full HD video
   
-[![Video mpc](images/mpc2.gif?raw=true)](https://youtu.be/FB-euup4RlY)  
+[![Video mpc](image/mpc2.gif?raw=true)](https://youtu.be/FB-euup4RlY)  
