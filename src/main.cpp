@@ -113,16 +113,20 @@ int main() {
 					Eigen::Map<Eigen::VectorXd> ptsy_transform(ptry, 6);
 
 					auto coeffs = polyfit(ptsx_transform, ptsy_transform, 3);
-
+					
+					double latency_x = 0 * v * (100/1000);
+					double latency_y = 0;
+					double latency_psi = 0;
+					
 					double cte = polyeval(coeffs, 0) - 0;
 
-					double epsi = 0 - atan(coeffs[1]);
+					double epsi = latency_psi - atan(coeffs[1] + 2 * latency_x * coeffs[2] + 3 * pow(latency_x, 2) * coeffs[3]);
 
 					double steer_value;
 					double throttle_value;
-
+					
 					Eigen::VectorXd state(6);
-					state << 0, 0, 0, v, cte, epsi;
+					state << latency_x, latency_y, latency_psi, v, cte, epsi;
 
 					auto vars = mpc.Solve(state, coeffs);
 

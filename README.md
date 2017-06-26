@@ -71,6 +71,53 @@ In simulator, MPC predicted trajectory is represented in green, and reference to
 3. Compile: `cmake .. && make`
 4. Run it: `./mpc`.
 
+## Details
+
+### Model
+
+The vehicle model is a kinematic model and these are the equations for the model :
+
+```
+x_[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
+y_[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
+psi_[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
+v_[t] = v[t-1] + a[t-1] * dt
+cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
+epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
+```
+
+### Timestep and Elapsed Duration( N, dt)
+
+N is the number of timesteps in the horizon. dt is how much time elapses between actuations. They are hyperparameters and T(N*dt) should be as large as possible, while dt should be as small as possible.  
+To find the appropriate value for N and dt, I tested several values(e.g. N = 7, 10, 15, 20 and corresponding dt value). In my model, N = 10, dt = 0.1 were best values.
+
+### fitting waypoints & latency
+
+The waypoints of the road are given in the global coordinate. So we need to convert it to the vehicle coordinate. After that, the waypoints are fitted with a 3rd order polynomial.
+
+```
+for (int i = 0; i < ptsx.size(); ++i) {
+
+	// move to origin and rotate around origin to align with axis
+	double shift_x = ptsx[i] - px;
+	double shift_y = ptsy[i] - py;
+
+	ptsx[i] = shift_x * cos(0 - psi) - shift_y * sin(0 - psi);
+	ptsy[i] = shift_x * sin(0 - psi) + shift_y * cos(0 - psi);
+} 
+```
+
+In our simulator, there is a latency between actuations commands.(100 ms)  
+I considered this latency and the equation is as below.  
+ 
+```
+double latency_x = 0 * v * (100 / 1000);
+double latency_y = 0;
+double latency_psi = 0;
+double cte = polyeval(coeffs, 0) - 0;
+double epsi = latency_psi - atan(coeffs[1] + 2 * latency_x * coeffs[2] + 3 * pow(latency_x, 2) * coeffs[3]);
+```
+
 ## Result
   
   
